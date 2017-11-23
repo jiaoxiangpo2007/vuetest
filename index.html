@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .active{
+            color:brown
+        }
+        .text-danger{
+            background-color: black
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="demo01.html">demo01</a></li>
+        </ul>
+    </nav>
+    <div id="app">
+        <p class="p_r" :class="{active:a,'text-danger':a}">{{a}} </p>
+        <input v-model="a">
+        <p>{{time}}</p>
+        <p>{{getTime}}</p>
+        <p>now: {{now}}</p>
+        <p>getNow: {{getNow}}</p>
+    </div>
+    <script src="bundle.js"></script>
+</body>
+
+</html>
