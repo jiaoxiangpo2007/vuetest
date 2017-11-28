@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,max-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>demo01</title>
     <link rel="stylesheet" type="text/css" href="./app/index.css">
 </head>
+
 <body>
     <div id="demo01">
         <button class="static" :class="classObject" @click="chgClass()">
@@ -16,7 +18,40 @@
         <button :class="[activeClass,errorClass]">button</button>
         <h3>多重值</h3>
         <button :style="{display:['-webkit-box','-ms-flexbox','flex']}">button</button>
+        <h3>条件渲染</h3>
+        <div>
+            <p v-if="ok">yes</p>
+            <p v-else>no</p>
+        </div>
+        <h3 id="v2.1"><a href="#v2.1">#</a> v-else-if</h3>
+        <input v-model="type">
+        <div>
+            <div v-if="type == 'A'"><b>A</b>BC</div>
+            <div v-else-if="type == 'B'">A<b>B</b>C</div>
+            <div v-else-if="type == 'C'">AB<b>C</b></div>
+            <div v-else>Typing...</div>
+        </div>
+        
+        <h3>v-for</h3>
+        <ul>
+            <li v-for="item in items" :key="item.id">{{item.message}}</li>
+        </ul>
+        <input v-model="pushDetails">
+        <button @click="pushArray()">push</button>
+        <h3>v-for  object</h3>
+        <div>
+            <ul>
+                <li v-for="(value,key,index) in object">{{index}}.{{key}}:{{value}}</li>
+            </ul>
+        </div>
+        <h3>替换数组</h3>
+        <div>
+            <li v-for="item in items" :key="item.id">{{item.message}}</li>
+        </div>
+        <input type="text" v-model="arrData">
+        <button @click="arraySet()">{{arrData}}</button>
     </div>
-        <script src="bundle.js"></script>
+    <script src="bundle.js"></script>
 </body>
+
 </html>

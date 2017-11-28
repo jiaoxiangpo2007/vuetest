@@ -35,13 +35,40 @@ var demo01Vm = new Vue({
         },
         activeClass:'active',
         errorClass:'text-danger',
+        ok:true,
+        type:'B',
+        items:[
+            {message:'Foo',id:1},
+            {message:'Bar',id:2}
+        ],
+        object:{
+            firstName:'John',
+            lastName:'Doe',
+            age:30
+        },
+        pushDetails:'',
+        arrData:'{"message":"FooD","id":1}'
+    },
+    computed:{
+        
     },
     methods: {
         chgClass: function () {
-            this.classObject = {
+            this.classObject =this.classObject.active ? {
                 active: false,
                 'text-danger': true
-            }
+            }: {
+                active: true,
+                'text-danger': false
+            };
+            this.ok = this.ok? false:true;
+        },
+        pushArray:function(){
+            this.items.push(JSON.parse(this.pushDetails));
+        },
+        arraySet:function(){
+            let arr = JSON.parse(this.arrData);
+            Vue.set(this.items,arr.id-1,arr);
         }
     }
 })

@@ -1,6 +1,7 @@
 .active{
     background-color: greenyellow;
-    box-shadow: 2px 2px 2px #888888;
+    color: #FFFFFF;
+    border: 2px;
 }
 .text-danger{
     color:red;
