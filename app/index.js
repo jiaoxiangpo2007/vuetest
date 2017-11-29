@@ -64,11 +64,38 @@ var demo01Vm = new Vue({
             this.ok = this.ok? false:true;
         },
         pushArray:function(){
+            if(this.pushDetails){
             this.items.push(JSON.parse(this.pushDetails));
+            }
         },
         arraySet:function(){
             let arr = JSON.parse(this.arrData);
             Vue.set(this.items,arr.id-1,arr);
         }
     }
+})
+
+
+var demo02Vm = new Vue({
+    el:'#demo02',
+    data:{
+        userProfile:{
+            name:'Anika'
+        },
+        newValue:''
+    },
+    methods:{
+        reset:function(){
+            let arr = JSON.parse(this.newValue);
+            for(let key in arr){
+                this.$set(this.userProfile,key,arr[key]);
+            }
+            
+        },
+        resetMulti:function(){
+            let arr = JSON.parse(this.newValue);
+            console.log(arr,JSON.stringify(arr));
+            this.userProfile = Object.assign({},this.userProfile,arr);
+        }
+    },
 })

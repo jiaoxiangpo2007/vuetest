@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo02</title>
+</head>
+<body>
+    <div id="demo02">
+        <ul>
+            <li v-for="(value,key) in userProfile">{{key}}:{{value}}</li>
+        </ul>
+        <input v-model="newValue"> 
+        <button @click="reset()">reset</button>
+        <button @click="resetMulti()">Multi</button>
+    </div>
+
+    <script src="bundle.js"></script>
+</body>
+</html>
