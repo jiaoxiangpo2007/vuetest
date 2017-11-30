@@ -82,7 +82,19 @@ var demo02Vm = new Vue({
         userProfile:{
             name:'Anika'
         },
-        newValue:''
+        newValue:'',
+        numbers:[0,1,2,3,4,5]
+    },
+    computed:{
+        evenNumbers:function(){
+            return this.numbers.filter(function(number){
+                console.log(number);
+                return number % 2 ===0;
+            })
+        },
+        todos:function(){
+            return [1,2];
+        }
     },
     methods:{
         reset:function(){
@@ -94,8 +106,56 @@ var demo02Vm = new Vue({
         },
         resetMulti:function(){
             let arr = JSON.parse(this.newValue);
-            console.log(arr,JSON.stringify(arr));
             this.userProfile = Object.assign({},this.userProfile,arr);
+        },
+        even:function(numbers){
+            return numbers.filter(function(number){
+                return number % 2 == 1
+            })
         }
+    }
+})
+
+var demo03Vm = new Vue({
+    el:'#demo03',
+    data:{
+        newTodoText:'',
+        todos:[
+            {
+                id:1,
+                title:'Take out the trash'
+            },
+            {
+                id:2,
+                title:'Take out the trash'
+            },
+            {
+                id:2,
+                title:'Mow the lawn'
+            }
+        ],
+        nextTodoId:4
     },
+    computed:{
+
+    },
+    methods:{
+        addNewTodo:function(){
+            this.todos.push({
+                id: this.nextTodoId++,
+                title:this.newTodoText
+            })
+            this.newTodoText = ''
+        }
+    }
+})
+
+Vue.component('todo-item',{
+    template:'\
+    <li>\
+    {{title}}\
+    <button v-on:click="$emit(\'remove\')">x</button>\
+    </li>\
+    ',
+    props:['title']
 })

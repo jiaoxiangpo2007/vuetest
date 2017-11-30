@@ -1,21 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Demo02</title>
 </head>
+
 <body>
     <div id="demo02">
         <ul>
             <li v-for="(value,key) in userProfile">{{key}}:{{value}}</li>
         </ul>
-        <input v-model="newValue"> 
+        <input v-model="newValue">
         <button @click="reset()">reset</button>
         <button @click="resetMulti()">Multi</button>
+        <h3>过滤</h3>
+        <ul>
+            <li v-for="n in evenNumbers">{{n}}</li>
+        </ul>
+        <ul>
+            <li v-for="n in even(numbers)">{{n}}</li>
+        </ul>
+        <div>
+            <span v-for="n in 5">{{ n }}</span>
+        </div>
+        <h3>v-for with v-if</h3>
+        <ul v-if="todos.length">
+            <li v-for="todo in todos">
+                {{todo}}
+            </li>
+        </ul>
+        <p v-else>No todos left!</p>
+        <h3>v-for with v-if</h3>
+        <ul>
+            <li v-for="todo in todos" v-if="!todo.isComplete">
+                {{todo}}
+            </li>
+        </ul>
     </div>
 
     <script src="bundle.js"></script>
 </body>
+
 </html>
