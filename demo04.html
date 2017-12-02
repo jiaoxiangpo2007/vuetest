@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo04</title>
+</head>
+
+<body>
+    <div id="demo04">
+        <button @click="counter +=1">Add 1</button>
+        <p>The button above has been clicked {{counter}} times.</p>
+        <h3>事件处理方法</h3>
+        <button @click="greet">Greet</button>
+        <h3>内敛处理器中的方法</h3>
+        <button @click="say('hi')">Say hi</button>
+        <button @click="say('what')">Say what</button>
+        <button @click="warn('Form cannot be submitted yet.',$event)">Submit</button>
+        <h3>多行文本</h3>
+        <span>Multiline message is:</span>
+        <p style="white-space:pre-line">
+            {{ message }}
+        </p>
+        <br />
+        <textarea v-model="message" placeholder="add multiple lines"></textarea>
+        <h3>复选框</h3>
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox"> {{checked}}</label>
+        <h3>复选框多个</h3>
+        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+        <label for="mike">Mike</label>
+        <br>
+        <span>checked names: {{checkedNames}}</span>
+        <h3>单选按钮</h3>
+        <input type="radio" id="one" value="one" v-model="picked">
+        <label for="one">One</label>
+        <input type="radio" id="two" value="two" v-model="picked">
+        <label for="two">Two</label>
+        <br>
+        <span>Piched: {{ picked }}</span>
+        <br>
+        <input type="radio" id="one" value="one" v-model="newPicked">
+        <label for="one">One</label>
+        <input type="radio" id="two" value="two" v-model="newPicked">
+        <label for="two">Two</label>
+        <br>
+        <span>newPicked: {{ newPicked }}</span>
+
+        <h3>选择列表</h3>
+        <select v-model="selected">
+            <option disabled value="">请选择</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected: {{selected}}</span>
+
+        <h3>多选列表</h3>
+        <select v-model="newSelected" multiple style="width:50px;">
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <br>
+        <span>Select: {{newSelected}}</span>
+
+        <h3>选择列表 v-for</h3>
+        <select v-model="selected">
+            <option v-for="option in options" :value="option.value">
+                {{ option.text }}
+            </option>
+        </select>
+        <h3>.number</h3>
+        <input v-model.number="age" type="number">
+        <span>{{ageType}}</span>
+        <h3>.trim</h3>
+        <input v-model.trim="trim" type="text">
+        <span>{{trim}} --</span>
+    </div>
+    <script src="bundle.js"></script>
+</body>
+
+</html>
