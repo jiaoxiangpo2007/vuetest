@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo09</title>
+    <style>
+        .fade-enter-active, .fade-leave-active{
+            transition: opacity 1s;
+        }
+        .fade-enter, .fade-leave-to{
+            opacity: 0
+        }
+    </style>
+</head>
+<body>
+    <div id="demo09">
+        <button @click="show = !show">Toggle</button>
+        <transition name="fade">
+            <p v-if="show">hello</p>
+        </transition>
+    </div>
+    <script src="bundle.js"></script>
+</body>
+</html>

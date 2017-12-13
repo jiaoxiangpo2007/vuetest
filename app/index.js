@@ -150,7 +150,7 @@ var demo03Vm = new Vue({
     },
     component: {
         'todo-item': {
-            name:'todo-item',
+            name: 'todo-item',
             template: '\
             <li>\
             {{title}}\
@@ -162,62 +162,165 @@ var demo03Vm = new Vue({
     }
 })
 
-let demo04Vm= new Vue({
-    el:'#demo04',
-    data:{
-        counter:0,
-        name:'Vuejs',
-        message:'',
-        checked:false,
-        checkedNames:['Mike'],
-        picked:'',
-        newPicked:'',
-        selected:'B',
-        newSelected:[],
-        options:[
-            {text:'one',value:'A'},
-            {text:'two',value:'B'},
-            {text:'three',value:'C'}
+let demo04Vm = new Vue({
+    el: '#demo04',
+    data: {
+        counter: 0,
+        name: 'Vuejs',
+        message: '',
+        checked: false,
+        checkedNames: ['Mike'],
+        picked: '',
+        newPicked: '',
+        selected: 'B',
+        newSelected: [],
+        options: [
+            { text: 'one', value: 'A' },
+            { text: 'two', value: 'B' },
+            { text: 'three', value: 'C' }
         ],
-        age:'',
-        trim:''
+        age: '',
+        trim: ''
     },
-    computed:{
-        ageType:function(){
-            return typeof(this.age);
+    computed: {
+        ageType: function () {
+            return typeof (this.age);
         }
     },
-    methods:{
-        greet:function(event){
+    methods: {
+        greet: function (event) {
             alert('Hello ' + this.name + '!');
-            if(event){
+            if (event) {
                 alert(event.target.tagName);
             }
         },
-        say:function(message){
+        say: function (message) {
             alert(message);
         },
-        warn:function(message,event){
-            if(event) event.preventDefault(); 
+        warn: function (message, event) {
+            if (event) event.preventDefault();
             alert(message);
         }
     }
-    
+
 });
-Vue.component('my-component',{
-    template:'<div>A custom component!</div>'
+Vue.component('my-component', {
+    template: '<div>A custom component!</div>'
 })
 
 let demo05Vm = new Vue({
-    el:'#demo05',
-    data:{
+    el: '#demo05',
+    data: {
 
     },
-    computed:{
+    computed: {
 
     },
-    methods:{
+    methods: {
 
     }
 })
 
+let demo07Vm = new Vue({
+    el: '#demo07',
+    data: {
+        message: 'sdf'
+    },
+    components: ('child', {
+        name: 'child',
+        props: ['myMessage'],
+        template: '<span>{{myMessage}}</span>'
+    })
+})
+
+Vue.component('button-counter', {
+    template: '<button v-on:click="incrementCounter">{{counter}}</button>',
+    data: function () {
+        return {
+            counter: 0
+        }
+    },
+    methods: {
+        incrementCounter: function () {
+            this.counter += 1
+            this.$emit('increment')
+        }
+    }
+})
+
+var demo08Vm = new Vue({
+    el: '#demo08',
+    data: {
+        total: 0
+    },
+    methods: {
+        incrementTotal: function () {
+            this.total += 1
+        }
+    }
+})
+
+let demo09Vm = new Vue({
+    el: '#demo09',
+    data: {
+        show: true
+    }
+})
+
+let demo10Vm = new Vue({
+    el: 'demo10',
+    directives: {
+        focus: {
+            inserted: function (el) {
+                console.log('aa')
+                el.focus()
+            }
+        }
+    }
+})
+
+Vue.directive('demo',{
+    bind:function(el,binding,vnode){
+        var s = JSON.stringify
+        el.innerHTML = 
+        'name:' +s(binding.name) + '<br>' +
+        'value:' +s(binding.value) + '<br>' +
+        'expression:' +s(binding.expression) + '<br>' +
+        'argument:' +s(binding.arg) + '<br>' +
+        'modifiers:' +s(binding.modifiers) + '<br>' +
+        'vnode_keys:' + Object.keys(vnode).join(',')        
+    }
+})
+
+let demo11VM = new Vue({
+    el:'#demo11',
+    data:{
+        message:'hello!'
+    }
+})
+
+Vue.component('demo12',{
+    render:function(createElement){
+        return createElement(
+            'h' + this.level,
+            {name:'nh2',class:'btn btn-default','v-html':'姓名'},
+            [
+                'This is vnode',
+                createElement('p','A top news'),
+            ]
+        )
+    },
+    props:{
+        level:{
+            type:Number,
+            required:true
+        }
+    }
+})
+
+let demo12Vm = new Vue({
+    el:'#demo12',
+    data:{
+        level:1
+    }
+})
